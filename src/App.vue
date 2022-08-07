@@ -7,7 +7,6 @@
 <script>
 import MHeader from '@/components/header/Header.vue'
 import MTab from '@/components/tab/Tab.vue'
-
 export default {
   name: 'App',
   components: {
