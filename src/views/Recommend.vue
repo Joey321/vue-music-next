@@ -1,5 +1,5 @@
 <template>
-  <div class="recommend" v-loading="loading">
+  <div class="recommend" v-loading:[loadingText]="loading">
     <scroll class="recommend-content">
       <!-- scroll中的第一个元素为滚动内容区 -->
       <div>
@@ -43,7 +43,8 @@ export default {
   data () {
     return {
       sliders: [],
-      albums: []
+      albums: [],
+      loadingText: 'Loading...'
     }
   },
   computed: {
