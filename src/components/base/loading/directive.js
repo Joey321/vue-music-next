@@ -12,8 +12,8 @@ const relativeCls = 'g-relative'
 
 const loadingDirective = {
   mounted (el, binding) {
-    console.log(el, '---el')
-    console.log(binding, '---binding')
+    // console.log(el, '---el')
+    // console.log(binding, '---binding')
     // app对象的根组件就是Loading组件
     const app = createApp(Loading)
     // Loading组件的实例

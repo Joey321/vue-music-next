@@ -6,7 +6,7 @@ export function getRecommend () {
   return get('/api/getRecommend')
 }
 
-// 专辑
+// 热门歌单
 export function getAlbum (album) {
   return get('/api/getAlbum', { id: album.id })
 }

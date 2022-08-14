@@ -44,7 +44,7 @@ export default {
     return {
       sliders: [],
       albums: [],
-      loadingText: 'Loading...'
+      loadingText: '你干嘛 哈哈 哎哟~~~'
     }
   },
   computed: {

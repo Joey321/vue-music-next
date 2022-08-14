@@ -11,10 +11,10 @@ export default function useScroll (wrapperRef, options, emit) {
       observeDOM: true,
       ...options
     })
-
+    // 实时派发滚动事件
     if (options.probeType > 0) {
-      scrollVal.on('scroll', (pos) => {
-        emit('scroll', pos)
+      scrollVal.on('scroll', (position) => {
+        emit('scroll', position)
       })
     }
   })
