@@ -2,7 +2,8 @@
   <scroll
     :probe-type="3"
     @scroll="onScroll"
-    class="index-list">
+    class="index-list"
+    ref="scrollRef">
     <!-- 歌手列表 -->
     <ul ref="groupRef">
       <!-- 组 -->
@@ -28,12 +29,28 @@
     <div class="fixed" v-show="fixedTitle" :style="fixedStyle">
       <div class="fixed-title">{{fixedTitle}}</div>
     </div>
+    <!-- 快捷导航 -->
+    <div class="shortcut"
+      @touchstart.stop.prevent="onShortcutTouchStart"
+      @touchmove.stop.prevent="onShortcutTouchMove">
+      <ul>
+        <li
+          v-for="(item, index) in shortcutList"
+          :key="item"
+          :data-index="index"
+          class="item"
+          :class="{'current':currentIndex===index}">
+          {{item}}
+        </li>
+      </ul>
+    </div>
   </scroll>
 </template>
 
 <script>
 import Scroll from '@/components/base/scroll/Scroll.vue'
 import useFixed from './use-fixed'
+import useShortcut from './use-shortcut'
 
 export default {
   name: 'index-list',
@@ -49,12 +66,18 @@ export default {
   emits: ['select'],
   setup (props, { emit }) {
     // 获取groupRef的DOM以便获取其children(每组li的DOM组成的数组)
-    const { groupRef, onScroll, fixedTitle, fixedStyle } = useFixed(props)
+    const { groupRef, onScroll, fixedTitle, fixedStyle, currentIndex } = useFixed(props)
+    const { shortcutList, onShortcutTouchStart, onShortcutTouchMove, scrollRef } = useShortcut(props, groupRef)
     return {
       groupRef,
       onScroll,
       fixedTitle,
-      fixedStyle
+      fixedStyle,
+      currentIndex,
+      shortcutList,
+      onShortcutTouchStart,
+      onShortcutTouchMove,
+      scrollRef
     }
   }
 }

@@ -4,6 +4,7 @@ import { onMounted, onUnmounted, onActivated, onDeactivated, ref } from 'vue'
 
 BScroll.use(ObserveDOM)
 export default function useScroll (wrapperRef, options, emit) {
+  // BScroll实例
   const scroll = ref(null)
 
   onMounted(() => {
