@@ -18,7 +18,8 @@
           <li
             v-for="item in group.list"
             :key="item.id"
-            class="item">
+            class="item"
+            @click="onItemClick(item)">
             <img class="avatar" v-lazy="item.pic">
             <span class="name">{{item.name}}</span>
           </li>
@@ -63,12 +64,16 @@ export default {
       }
     }
   },
-  emits: ['select'],
+  emits: ['click-singer'],
   setup (props, { emit }) {
     // 获取groupRef的DOM以便获取其children(每组li的DOM组成的数组)
     const { groupRef, onScroll, fixedTitle, fixedStyle, currentIndex } = useFixed(props)
     const { shortcutList, onShortcutTouchStart, onShortcutTouchMove, scrollRef } = useShortcut(props, groupRef)
+    function onItemClick (singer) {
+      emit('click-singer', singer)
+    }
     return {
+      onItemClick,
       groupRef,
       onScroll,
       fixedTitle,

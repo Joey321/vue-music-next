@@ -58,7 +58,7 @@ export default {
       console.log(res)
       this.sliders = res.sliders
       this.albums = res.albums
-    }, 1000)
+    }, 500)
   }
 }
 </script>

@@ -1,6 +1,8 @@
 <template>
   <div class="singer" v-loading:[loadingText]="loading">
-    <IndexList :data="singers" />
+    <IndexList :data="singers" @click-singer="clickSinger" />
+    <!-- router-view对应SingerDetail -->
+    <router-view :singer="clickedSinger" />
   </div>
 </template>
 
@@ -16,7 +18,8 @@ export default {
   data () {
     return {
       singers: [],
-      loadingText: '你干嘛 哈哈 哎哟~~~'
+      loadingText: '你干嘛 哈哈 哎哟~~~',
+      clickedSinger: null
     }
   },
   computed: {
@@ -29,7 +32,17 @@ export default {
       const res = await getSingerList()
       console.log(res)
       this.singers = res.singers
-    }, 1000)
+    }, 500)
+  },
+  methods: {
+    clickSinger (singer) {
+      this.clickedSinger = singer
+      console.log('clickedSinger---', this.clickedSinger)
+      // 跳转到歌手详情页
+      this.$router.push({
+        path: `/singer/${singer.mid}`
+      })
+    }
   },
   setup () {
     return {}
